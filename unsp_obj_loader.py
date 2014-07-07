@@ -1,3 +1,5 @@
+# Loader for u'nSP .obj files extracted from .lib
+
 NAME = "SunPlus u'nSP ObjFile"
 
 import ctypes

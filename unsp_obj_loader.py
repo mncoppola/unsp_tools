@@ -1,8 +1,13 @@
 NAME = "SunPlus u'nSP ObjFile"
 
 import ctypes
-#ida_dll = ctypes.WinDLL("ida.wll")
-ida_dll = ctypes.cdll["libida.so"]
+idaname = "ida64" if __EA64__ else "ida"
+if sys.platform == "win32":
+    ida_dll = ctypes.windll[idaname + ".wll"]
+elif sys.platform == "linux2":
+    ida_dll = ctypes.cdll["lib" + idaname + ".so"]
+elif sys.platform == "darwin":
+    ida_dll = ctypes.cdll["lib" + idaname + ".dylib"]
 _mem2base = ida_dll.mem2base
 _mem2base.argtypes = [ctypes.c_void_p, ctypes.c_uint32, ctypes.c_uint32, ctypes.c_int32]
 
